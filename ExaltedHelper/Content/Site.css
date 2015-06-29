@@ -16,6 +16,14 @@ textarea {
     max-width: 280px;
 }
 
+.editor-multiline-field textarea {
+    width: 83.33333333333334%;
+    height: 200px;
+    min-height: 200px;
+    min-width: 150px;
+    max-height: 400px;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;

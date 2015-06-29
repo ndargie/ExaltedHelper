@@ -12,16 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ExaltedType.Description)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.ExaltedType.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MinimumEssance)
@@ -43,9 +40,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExaltedType.Description)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>

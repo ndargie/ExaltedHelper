@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CharmDataModel</h4>
+        <h4>Create Charm</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -27,8 +27,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description)
+                <div class="editor-multiline-field">
+                    @Html.EditorFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
             </div>
         </div>
 
