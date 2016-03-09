@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EssanceRequirement, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EssanceRequirement)
+                @Html.EditorFor(model => model.EssanceRequirement, new { htmlAttributes = new { min = 0, max = 10 } })
                 @Html.ValidationMessageFor(model => model.EssanceRequirement)
             </div>
         </div>
@@ -50,23 +50,22 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AbilityRequirement, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AbilityRequirement)
+                @Html.EditorFor(model => model.AbilityRequirement, new { htmlAttributes = new { min = 0, max = 10 } })
                 @Html.ValidationMessageFor(model => model.AbilityRequirement)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ExaltedType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ExaltedTypes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                  @Html.DropDownList("exaltedTypeDropDown", ViewBag.ExaltedTypes as SelectList)
-                  @Html.HiddenFor(model => model.ExaltedType, htmlAttributes: new { @Id = "exaltedType" })
+                @Html.DropDownListFor(m => m.SelectedExaltedType, new SelectList(Model.ExaltedTypes, "id", "name"))
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.HealthCost, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HealthCost)
+                @Html.EditorFor(model => model.HealthCost, new {htmlAttributes = new {min = 0, max = 10}})
                 @Html.ValidationMessageFor(model => model.HealthCost)
             </div>
         </div>
@@ -74,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.WillpowerCost, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WillpowerCost)
+                @Html.EditorFor(model => model.WillpowerCost, new { htmlAttributes = new { min = 0, max = 10 } })
                 @Html.ValidationMessageFor(model => model.WillpowerCost)
             </div>
         </div>
@@ -82,7 +81,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EssanceCost, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EssanceCost)
+                @Html.EditorFor(model => model.EssanceCost, new { htmlAttributes = new { min = 0, max = 10 } })
                 @Html.ValidationMessageFor(model => model.EssanceCost)
             </div>
         </div>

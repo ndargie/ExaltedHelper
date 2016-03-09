@@ -186,8 +186,10 @@
     <Compile Include="Models\AttributeCategoryDataModel.cs" />
     <Compile Include="Models\CastesDataModel.cs" />
     <Compile Include="Models\CharmDataModel.cs" />
+    <Compile Include="Models\CharmEditViewModel.cs" />
     <Compile Include="Models\CharmViewModel.cs" />
     <Compile Include="Models\ExaltedTypeDataModel.cs" />
+    <Compile Include="Models\ExaltedTypeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SkillDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

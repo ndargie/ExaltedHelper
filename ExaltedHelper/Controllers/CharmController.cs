@@ -27,7 +27,7 @@ namespace ExaltedHelper
             var charmModel = from m in _db.CharmModel.Include(e => e.ExaltedType)
                              orderby m.Name
                              select m;
-            return View(Mapper.Map<CharmDataModel[], CharmViewModel[]>(charmModel.ToArray()).ToList());
+            return View(Mapper.Map<CharmDataModel[], CharmEditViewModel[]>(charmModel.ToArray()).ToList());
         }
 
         public ActionResult FilterAction(int exaltedTypeId)
@@ -37,7 +37,7 @@ namespace ExaltedHelper
                              orderby m.Name
                              where m.ExaltedType.Description == exaltedType.Description
                              select m;
-            return PartialView("_Charms", Mapper.Map<CharmDataModel[], CharmViewModel[]>(charmModel.ToArray()).ToList());
+           return PartialView("_Charms", Mapper.Map<CharmDataModel[], CharmEditViewModel[]>(charmModel.ToArray()).ToList());
         }
 
         // GET: /Charm/Details/5
@@ -58,8 +58,9 @@ namespace ExaltedHelper
         // GET: /Charm/Create
         public ActionResult Create()
         {
-            ViewBag.ExaltedTypes = new SelectList(_db.ExaltedTypeModel.ToList(), "Id", "Description");
-            return View();
+            CharmViewModel view = new CharmViewModel();
+            view.ExaltedTypes = _db.ExaltedTypeModel.ToList().Select(Mapper.Map<ExaltedTypeViewModel>).ToList();
+            return View(view);
         }
 
         // POST: /Charm/Create
@@ -67,9 +68,8 @@ namespace ExaltedHelper
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,ComboOk,EssanceRequirement,HealthCost,WillpowerCost,EssanceCost")] CharmViewModel charmViewModel)
+        public ActionResult Create(CharmViewModel charmViewModel)
         {
-            SelectList exaltedTypeList = ViewBag.ExaltedTypes as SelectList;
             CharmDataModel charm = Mapper.Map<CharmDataModel>(charmViewModel);
             if (ModelState.IsValid)
             {
@@ -77,8 +77,7 @@ namespace ExaltedHelper
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ExaltedTypes = new SelectList(_db.ExaltedTypeModel.ToList(), "Id", "Description");
+            charmViewModel.ExaltedTypes = _db.ExaltedTypeModel.ToList().Select(Mapper.Map<ExaltedTypeViewModel>).ToList();
             return View(charmViewModel);
         }
 
