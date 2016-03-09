@@ -1,28 +1,52 @@
 ﻿using ExaltedHelper.Infrastructure.Interfaces;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace ExaltedHelper.Models
 {
     public class CharmViewModel
     {
 
+        [Key]
+        public int Id { get; set; }
+
         [DisplayName("Name")]
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         [DisplayName("Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-
+        
+        [Required]
         [DisplayName("Combo ok")]
         public bool ComboOk { get; set; }
 
-        [DisplayName("Willpower")]
-        public int WillPowerCost { get; set; }
-
+        [Required]
         [DisplayName("Essance")]
+        public int EssanceRequirement { get; set; }
+
+        [Required]
+        [DisplayName("Ability requirement")]
+        public int AbilityRequirement { get; set; }
+
+        [Required]
+        [DisplayName("Exalted Type")]
+        public string ExaltedType { get; set; }
+
+        [Required]
+        [DisplayName("Health cost")]
+        public int HealthCost { get; set; }
+        
+        [Required]
+        [DisplayName("Willpower cost")]
+        public int WillpowerCost { get; set; }
+
+        [Required]
+        [DisplayName("Essance cost")]
         public int EssanceCost { get; set; }
 
-        [DisplayName("Health")]
-        public int HealthCost { get; set; }
     }
 }

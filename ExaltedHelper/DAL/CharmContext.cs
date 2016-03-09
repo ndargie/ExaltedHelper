@@ -22,5 +22,7 @@ namespace ExaltedHelper.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<ExaltedHelper.Models.CharmViewModel> CharmViewModels { get; set; }
     }
 }

@@ -37,5 +37,8 @@ namespace ExaltedHelper.Models
         [Required]
         [DisplayName("Health Cost")]
         public int HealthCost { get; set; }
+
+        [Required]
+        public bool ComboOk { get; set; }
     }
 }

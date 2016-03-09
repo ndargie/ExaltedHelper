@@ -1,4 +1,4 @@
-﻿@model ExaltedHelper.Models.CharmDataModel
+﻿@model ExaltedHelper.Models.CharmViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -12,12 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Create Charm</h4>
+        <h4>CharmViewModel</h4>
         <hr />
         @Html.ValidationSummary(true)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
@@ -25,57 +24,47 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="editor-multiline-field">
-                    @Html.EditorFor(model => model.Description)
-                    @Html.ValidationMessageFor(model => model.Description)
-                </div>
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ExaltedTypeDataModelId, "ExaltedTypeDataModelId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ComboOk, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ExaltedTypeDataModelId", String.Empty)
-                @Html.ValidationMessageFor(model => model.ExaltedTypeDataModelId)
+                @Html.EditorFor(model => model.ComboOk)
+                @Html.ValidationMessageFor(model => model.ComboOk)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MinimumEssance, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EssanceRequirement, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MinimumEssance)
-                @Html.ValidationMessageFor(model => model.MinimumEssance)
+                @Html.EditorFor(model => model.EssanceRequirement)
+                @Html.ValidationMessageFor(model => model.EssanceRequirement)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MinimumAbility, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AbilityRequirement, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MinimumAbility)
-                @Html.ValidationMessageFor(model => model.MinimumAbility)
+                @Html.EditorFor(model => model.AbilityRequirement)
+                @Html.ValidationMessageFor(model => model.AbilityRequirement)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WillPowerCost, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ExaltedType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WillPowerCost)
-                @Html.ValidationMessageFor(model => model.WillPowerCost)
+                  @Html.DropDownList("exaltedTypeDropDown", ViewBag.ExaltedTypes as SelectList)
+                  @Html.HiddenFor(model => model.ExaltedType, htmlAttributes: new { @Id = "exaltedType" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EssanceCost, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EssanceCost)
-                @Html.ValidationMessageFor(model => model.EssanceCost)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HealthCost, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HealthCost, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.HealthCost)
                 @Html.ValidationMessageFor(model => model.HealthCost)
@@ -83,8 +72,25 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.WillpowerCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WillpowerCost)
+                @Html.ValidationMessageFor(model => model.WillpowerCost)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EssanceCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EssanceCost)
+                @Html.ValidationMessageFor(model => model.EssanceCost)
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <button id="btnCreate" name="btnCreate" class="btn btn-default" type="submit">Save</button>
+                @*<input type="submit" value="Create" class="btn btn-default" />*@
             </div>
         </div>
     </div>
@@ -96,4 +102,15 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $('#btnCreate').on('click', function () {
+                var exaltedType = $(this).text();
+                var modelExaltedType = $('#ExaltedType');
+                modelExaltedType.text() = exaltedType;
+                });
+            });
+        });
+</script>
 }

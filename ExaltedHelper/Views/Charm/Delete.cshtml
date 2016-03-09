@@ -1,4 +1,5 @@
-﻿@model ExaltedHelper.Models.CharmDataModel
+﻿@using ExaltedHelper.Helpers
+@model ExaltedHelper.Models.CharmDataModel
 
 @{
     ViewBag.Title = "Delete";
@@ -73,6 +74,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.HealthCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComboOk)
+        </dt>
+
+        <dd>
+            @Html.YesNo(Model.ComboOk);
         </dd>
 
     </dl>

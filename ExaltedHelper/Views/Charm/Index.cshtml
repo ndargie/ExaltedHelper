@@ -1,75 +1,59 @@
-﻿@model IEnumerable<ExaltedHelper.Models.CharmDataModel>
+﻿@using ExaltedHelper.Helpers;
+@model IEnumerable<ExaltedHelper.Models.CharmViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<h2>@ViewBag.Title</h2>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Filter by exalted type
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExaltedType.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinimumEssance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinimumAbility)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WillPowerCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EssanceCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HealthCost)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
+        </th>
+    </tr>
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DropDownList("exaltedTypeDropDown", ViewBag.ExaltedTypes as SelectList)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExaltedType.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinimumEssance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinimumAbility)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WillPowerCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EssanceCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HealthCost)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+           
         </td>
     </tr>
-}
-
 </table>
+<p>
+
+</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div id="container">
+    @Html.Action("FilterAction", new { exaltedTypeId = 1 })
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $('#exaltedTypeDropDown').on('change', function () {
+                var exaltedTypeId = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("FilterAction")',
+                    type: 'GET',
+                    data: { exaltedTypeId: exaltedTypeId },
+                    cache: false,
+                    success: function (result) {
+                        $('#container').empty();
+                        $('#container').html(result);
+                    }
+                });
+            });
+        });
+    });
+</script>
+

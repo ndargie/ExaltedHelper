@@ -1,4 +1,5 @@
 ﻿using ExaltedHelper.DAL;
+using ExaltedHelper.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,7 +20,9 @@ namespace ExaltedHelper
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);        
             Database.SetInitializer<CharmContext>(new CharmInitialiser());
-
+            CharmContext db = new CharmContext();
+            db.Database.Initialize(true);
+            InitialiseMappers.RegisterMappings();
         }
     }
 }

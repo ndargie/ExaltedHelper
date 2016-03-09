@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -158,7 +164,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="CharmController.cs" />
+    <Compile Include="Controllers\CharmController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CharmContext.cs" />
@@ -167,12 +173,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumExtensions.cs" />
+    <Compile Include="Helpers\HTMLHelper.cs" />
     <Compile Include="Infrastructure\Implementations\Charm.cs" />
     <Compile Include="Infrastructure\Implementations\CharmCosts.cs" />
     <Compile Include="Infrastructure\Implementations\DbAccessor.cs" />
     <Compile Include="Infrastructure\Interfaces\ICharm.cs" />
     <Compile Include="Infrastructure\Interfaces\ICharmCost.cs" />
     <Compile Include="Infrastructure\Interfaces\IDbAccessor.cs" />
+    <Compile Include="Mappers\InitialiseMappers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttributeDataModel.cs" />
     <Compile Include="Models\AttributeCategoryDataModel.cs" />
@@ -231,11 +239,12 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Charm\Create.cshtml" />
     <Content Include="Views\Charm\Delete.cshtml" />
     <Content Include="Views\Charm\Details.cshtml" />
     <Content Include="Views\Charm\Edit.cshtml" />
     <Content Include="Views\Charm\Index.cshtml" />
+    <Content Include="Views\Charm\_Charms.cshtml" />
+    <Content Include="Views\Charm\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +285,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

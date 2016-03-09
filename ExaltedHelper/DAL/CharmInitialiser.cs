@@ -154,16 +154,14 @@ namespace ExaltedHelper.DAL
                 new CharmDataModel 
                 {
                     Id = new Random().Next(200), 
-                    //Caste = noCaste,                   
+                    ComboOk = true,
                     Description = "Add up to your ability + attribute to a war roll",
                     EssanceCost = 1, 
                     ExaltedType = solar,                    
                     HealthCost = 0,
                     MinimumAbility = 1,
                     MinimumEssance = 1,
-                    Name = "First War Excellancy",
-                    //RequiredAttribute = noAttributes,
-                    //RequiredSkill = war,                                      
+                    Name = "First War Excellancy",                                   
                     WillPowerCost = 0,
                 }
             };
